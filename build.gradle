@@ -31,6 +31,8 @@ dependencies {
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
 // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
 compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.7.Final'
+// https://mvnrepository.com/artifact/javax.persistence/persistence-api
+compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 
 }
 test {

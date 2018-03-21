@@ -1,23 +1,39 @@
 package ParqueaderoCeiba.parqueaderoCeiba.model;
 
-import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-public class TipoVehiculo implements Serializable {
+@Entity
+@Table(name="tipo_vehiculo")
+public class TipoVehiculo {
 
+	@Id
+	@Column(name="idTipo")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idTipo;
+	
+	@Column(name="tipo")
 	private String tipo;
-	
-	
-	public TipoVehiculo(Long idTipo, String tipo) {
-		super();
-		this.idTipo = idTipo;
-		this.tipo = tipo;
-	}
+	@OneToMany(mappedBy="tipo")		
+	private Set<Vehiculo> vehiculos;
 	public TipoVehiculo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public TipoVehiculo(String tipo) {
+		super();
+		this.tipo = tipo;
+		
+	}
+
 	public Long getIdTipo() {
 		return idTipo;
 	}
@@ -30,5 +46,6 @@ public class TipoVehiculo implements Serializable {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
 	
 }
