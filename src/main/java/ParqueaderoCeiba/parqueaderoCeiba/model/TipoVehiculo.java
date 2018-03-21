@@ -1,7 +1,10 @@
 package ParqueaderoCeiba.parqueaderoCeiba.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,22 +19,23 @@ public class TipoVehiculo {
 
 	@Id
 	@Column(name="idTipo")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Long idTipo;
 	
 	@Column(name="tipo")
 	private String tipo;
-	@OneToMany(mappedBy="tipo")		
-	private Set<Vehiculo> vehiculos;
+	@OneToMany(mappedBy="tipoVehiculo")		
+	private Collection<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 	public TipoVehiculo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TipoVehiculo(String tipo) {
+	public TipoVehiculo(Long idTipo ,String tipo) {
 		super();
 		this.tipo = tipo;
-		
+		this.idTipo= idTipo;
 	}
 
 	public Long getIdTipo() {
@@ -46,6 +50,18 @@ public class TipoVehiculo {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+
+	public Collection<Vehiculo> getVehiculos() {
+		return vehiculos;
+	}
+
+	public void setVehiculos(Collection<Vehiculo> vehiculos) {
+		this.vehiculos = vehiculos;
+	}
+
+	
+	
+
 	
 	
 }

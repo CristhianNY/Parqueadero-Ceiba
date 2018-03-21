@@ -24,21 +24,27 @@ public class Vehiculo implements Serializable{
 	private String placa;
 	@Column(name="cilindraje")
 	private int cilindraje;	
-
-	@ManyToOne
-	@JoinColumn(name="tipo_vehiculo")
-	private TipoVehiculo tipo;
-	//@ManyToOne(optional= true)
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="parqueadero_idparqueadero")
-	private Parqueadero parqueadero;
+	
+	@Column(name="fecha_entrada")
+	private Date fechaEntrada;
 
 	
-	public Vehiculo( String placa, int cilindraje, TipoVehiculo tipo) {
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_tipo_vehiculo")
+	private TipoVehiculo tipoVehiculo;
+	//@ManyToOne(optional= true)
+	//@ManyToOne(fetch=FetchType.EAGER)
+	//@JoinColumn(name="parqueadero_idparqueadero")
+	
+
+	
+	public Vehiculo( String placa, int cilindraje, Date fechaEntrada,TipoVehiculo tipoVehiculo) {
 		super();
 		this.placa = placa;
 		this.cilindraje = cilindraje;
-		this.tipo = tipo;
+		this.tipoVehiculo = tipoVehiculo;
+		this.fechaEntrada = fechaEntrada;
+	
 	
 	}
 	public Vehiculo() {
@@ -61,9 +67,15 @@ public class Vehiculo implements Serializable{
 		this.cilindraje = cilindraje;
 	}
 	public TipoVehiculo getTipo() {
-		return tipo;
+		return tipoVehiculo;
+	}
+	public Date getFecha_entrada() {
+		return fechaEntrada;
 	}
 
+	
+
+	
 	
 	
 	
