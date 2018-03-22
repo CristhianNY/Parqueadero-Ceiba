@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name="vehiculo")
 public class Vehiculo implements Serializable{
 	@Id
-	@Column(name="idvehiculo")
+	@Column(name="idvehiculo",columnDefinition = "INT(11)", updatable = false, nullable = false)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long idvehiculo;	
 	@Column(name="placa")
@@ -30,7 +30,7 @@ public class Vehiculo implements Serializable{
 
 	
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="id_tipo_vehiculo")
+	@JoinColumn(name="idTipoVehiculo")
 	private TipoVehiculo tipoVehiculo;
 	//@ManyToOne(optional= true)
 	//@ManyToOne(fetch=FetchType.EAGER)

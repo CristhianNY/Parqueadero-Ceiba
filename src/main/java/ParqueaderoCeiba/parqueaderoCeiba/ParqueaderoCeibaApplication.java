@@ -1,6 +1,7 @@
 package ParqueaderoCeiba.parqueaderoCeiba;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import ParqueaderoCeiba.parqueaderoCeiba.dao.VehiculoDaoImpl;
 import ParqueaderoCeiba.parqueaderoCeiba.model.TipoVehiculo;
 import ParqueaderoCeiba.parqueaderoCeiba.model.Vehiculo;
 
@@ -18,16 +20,18 @@ public class ParqueaderoCeibaApplication {
 		SpringApplication.run(ParqueaderoCeibaApplication.class, args);
 	
 	
-		SessionFactory sessionFactory;
-		Configuration configuration = new Configuration();
-		configuration.configure();
-		sessionFactory = configuration.buildSessionFactory();
-		Session session = sessionFactory.openSession();
 		
-		TipoVehiculo tipoVehiculo = new TipoVehiculo(1L,"carro");
-		Vehiculo vehiculo = new Vehiculo("1234",200,new Date(),tipoVehiculo);
-		session.beginTransaction();
-		session.save(vehiculo);
-		session.getTransaction().commit();
+		TipoVehiculo tipoVehiculo = new TipoVehiculo(1L,"moto");
+		Vehiculo vehiculo = new Vehiculo("5525",125,new Date(),tipoVehiculo);
+		VehiculoDaoImpl vehiculoDaoImpl = new VehiculoDaoImpl();
+		vehiculoDaoImpl.guardarVehiculo(vehiculo);
+		
+		List<Vehiculo> vehiculos = vehiculoDaoImpl.obtenerTodosLosVehiculos();
+		
+		for (Vehiculo v : vehiculos) {
+			
+			System.out.println("Placa "+ v.getPlaca());
+		}
+		
 	}
 }

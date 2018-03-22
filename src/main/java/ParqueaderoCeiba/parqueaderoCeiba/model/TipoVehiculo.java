@@ -14,13 +14,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tipo_vehiculo")
+@Table(name="tipovehiculo")
 public class TipoVehiculo {
 
 	@Id
-	@Column(name="idTipo")
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	
+	@GeneratedValue(
+	    strategy = GenerationType.IDENTITY
+	)
+	@Column(name="idtipo",
+	    columnDefinition = "INT(11)"
+	)
 	private Long idTipo;
 	
 	@Column(name="tipo")
